@@ -1,0 +1,10 @@
+<div class="container1">
+<app-menutab></app-menutab>
+  <div class="content">
+        <router-outlet></router-outlet>
+      <input type="text" [(ngModel)]="name" pInputText>
+<button type="button" pButton label="Click" icon="fa fa-check" (click)="onClick($event)"></button>
+
+<div>{{message}}</div>
+  </div>
+</div>

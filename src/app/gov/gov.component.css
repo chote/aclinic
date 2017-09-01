@@ -1,0 +1,10 @@
+.myTable{
+    background-color:green;
+}
+.ui-datatable.myTable th {
+    background: red;
+}
+td.col-button{
+    width:50px;
+    max-width:50px;
+}

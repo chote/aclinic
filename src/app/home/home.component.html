@@ -1,0 +1,33 @@
+<div class="container">
+<form (ngSubmit) = "save()">
+<div class="row">
+  <div class="col s6">
+<div *ngFor="let t of boxes;let i=index">
+ <div class="row"  style="font-size:0.8em" *ngIf="i%2 ==1">
+             <div class="col s4">        
+        {{t.txname}}:</div>
+        <div class="col s4">        
+         <input type="text" style="font-size:0.8em" name ="{{'amount'+i}}"  [(ngModel)]="amount[i]"> </div>
+        <div class="col s4">
+          <input type="text" style="font-size:0.8em" name ="{{'price'+i}}" [(ngModel)]="price[i]" ></div>
+     </div>     
+   </div>
+  </div>
+    <div class="col s6">
+<div *ngFor="let t of boxes;let i=index">
+ <div class="row" style="font-size:0.8em" *ngIf="i%2 ==0">
+             <div class="col s4">        
+        {{t.txname}}:</div>
+        <div class="col s4">        
+         <input type="text"style="font-size:0.8em" name ="{{'amount'+i}}" [(ngModel)]="amount[i]"  > </div>
+        <div class="col s4">
+          <input type="text" style="font-size:0.8em" name ="{{'price'+i}}" [(ngModel)]="price[i]" ></div>
+     </div>     
+   </div>
+ </div>
+
+  </div>
+
+    <div class="card-panel teal lighten-2"><button class="btn btn-info" type="submit"></button></div>
+</form>
+</div>

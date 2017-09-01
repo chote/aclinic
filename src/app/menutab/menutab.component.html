@@ -1,0 +1,52 @@
+<nav class="nav-extended ">
+    <div class="nav-wrapper bgnav"   >
+      <a href="#" class="brand-logo">  คลีนิก4.0</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="sass.html">Sass</a></li>
+        <li><a href="badges.html">Components</a></li>
+        <li><a href="collapsible.html">JavaScript</a></li>
+      </ul>
+    </div>
+    <div class="nav-content bgnav2">
+      <ul class="tabs tabs-transparent">
+            <li class="tab"><a class="active" href="#hometab">หน้าหลัก</a></li>
+          <li class="tab"><a  href="#txtab">ห้องทันตกรรม</a></li>
+         <li class="tab"><a  href="#govtab">เทศบาล</a></li>
+        <li class="tab"><a href="#labtab">งานLab</a></li>
+         <li class="tab"><a href="#expensetab">ค่าใช้จ่าย</a></li>
+        <li class="tab"><a href="#producttab">ขายของ</a></li>
+         <li class="tab"><a href="#reporttab">รายงาน</a></li>
+          <li class="tab"><a href="#settingtab">ตั้งค่า</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div id="hometab" class="col s12">
+      <a href="#test0">HomePage</a>
+      </div>
+  <div id="txtab" class="col s12">
+   <button *ngFor="let d of doctors;let i=index" (click)="go(d.doctorid)" class="waves-effect waves-light btn btmargin"><i class="material-icons left">cloud</i>{{d.doctorname}}</button>
+  </div>
+  <div id="govtab" class="col s12">
+    <button class ="btn btn-small blue ligthen-3" (click)="goPage('gov')">ใบเบิกเทศบาล</button>
+
+  </div>
+   <div id="labtab" class="col s12">
+        <button class ="btn btn-small blue ligthen-3" (click)="goPage('lab')">ใบส่งLab</button>
+   </div>
+    <div id="producttab" class="col s12">รายงาน</div>
+     <div id="reporttab" class="col s12">รายงาน</div>
+      <div id="settingtab" class="col s12">
+      
+        <button class="btn vtn-small light-blue" (click)="goFdname()">getField</button>
+
+      </div>
+        <div id="expensetab" class="col s12">
+    <button class ="btn btn-small green ligthen-3" (click)="goPage('expense')">ค่าใช้จ่าย</button>
+
+  </div>

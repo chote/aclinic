@@ -1,0 +1,41 @@
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+}
+ .card {
+    display: inline-block;
+    width:90px;
+    height:140px;
+    margin:5px;
+
+  }
+.card-inner{
+background-image: url("/assets/pic-1.png");
+opacity: 1;
+z-index: -100;
+}
+.card-content{
+     height:50px;
+    padding-left:5px; padding-right:5px;
+    font-size:0.6em;
+    display: block;
+white-space:normal;
+text-overflow: ellipsis;
+overflow: hidden;
+ margin-top:-10px;
+ z-index: 1000;
+}
+.highcharts-container {
+	font-size: 0.6em;
+}
+ chart {
+        display: block;
+        height:100px;
+        margin-bottom:-10px;
+     font-size:0.6em;
+     opacity: 1;
+      z-index: 2000;
+      }
+    

@@ -1,0 +1,19 @@
+.panelHolder
+{
+    border: solid 2px #545454;
+    padding: 15px 5px 20px 5px;
+    display: block;
+    margin: 0 0 10px 0;
+}
+.panelHeader
+{
+    background-color: #3b5998;
+    border-bottom: 1px solid #133783;
+    color: White;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding: 10px 5px 10px 5px;
+    display: block;
+    margin: 0 0 3px 0;
+}

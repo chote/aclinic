@@ -1,0 +1,183 @@
+<nav class="blue">
+    <ul>
+        <li>
+            <button class="btn btn-small orange" (click)="addNewEvalBill()" >เพิ่มใบเบิกใหม่</button>
+        </li>
+        
+    </ul>
+</nav>
+<p-dataTable [value]="govs" [expandableRows]="true" [expandedRows]="govsDetail" (onRowExpand)="handleRowExpand($event)">
+    <p-column expander="true" styleClass="col-icon">
+
+
+    </p-column>
+    <p-column header="เพิ่มรายการ">
+        <ng-template let-c="rowData" pTemplate="body">
+            <button class="btn btn-small green " (click)=" showDialogToAddGovDetail(c)">+</button>
+        </ng-template>
+    </p-column>
+    <p-column field="evalid" header="billid"></p-column>
+    <p-column field="evalcode" header="billCode"></p-column>
+    <p-column field="evaldate" header="วันที่เขียน"></p-column>
+    <p-column header="ชื่อคนไข้">
+        <ng-template let-r="rowData" pTemplate="body">
+            {{r.ptname +' ' +r.ptsurname}}
+        </ng-template>
+
+    </p-column>
+
+    <p-column field="doctorname" header="ทันตแพทย์หลัก"></p-column>
+    <p-column field="totalprice" header="ค่ารักษารวม"></p-column>
+    <p-column field="datereturn" header="วันที่ส่งใบกลับ"></p-column>
+    <p-column field="datecheque" header="วันที่Chequeออก"></p-column>
+    <p-column header="แก้ไข">
+        <ng-template let-c="rowData" pTemplate="body">
+            <button class="btn btn-small light-blue lighten-3 " (click)="editBill(c)"><i class="material-icons">edit</i></button>
+        </ng-template>
+    </p-column>
+    <ng-template let-r="rowData" pTemplate="rowexpansion">
+        <div class="container" style="background-color:olivedrab">
+            <p-dataTable [value]="det">
+                <p-column field="evalid" header="id"></p-column>
+                <p-column field="doctorname" header="ทันตแพทย์"></p-column>
+                <p-column field="txname" header="หัตถการ"></p-column>
+                <p-column field="isspecial" header="Spec"></p-column>
+                <p-column field="price" header="ราคา"></p-column>
+
+            </p-dataTable>
+        </div>
+    </ng-template>
+</p-dataTable>
+
+<p-dialog [width]="900" header="รายการใบเบิกเทศบาล" [(visible)]="displayDialogGov" [responsive]="true" showEffect="fade"
+    [modal]="true">
+    <div class="row">
+        <div class="col s6">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="maindoctorid">ทันตแพทย์</label></div>
+                    <div class="ui-grid-col-8">
+                        <p-dropdown autoWidth="true" [style]="{'width':'100%'}" (onChange)="showFilterDoctor($event)"   [options]="doctors" [(ngModel)]="gov.maindoctorid"></p-dropdown>
+                    </div>
+                </div>
+ <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="evalcode">เลขที่ใบเบิก</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="evalcode" [(ngModel)]="gov.evalcode" /></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="evaldate">วันที่รักษาทันตกรรม</label></div>
+                    <div class="ui-grid-col-8"><input type="date" pInputText id="evaldate" [(ngModel)]="gov.evaldate" /></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="hn">เลขที่คนไข้</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="hn" [(ngModel)]="gov.hn" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="ptname">ชื่อคนไข้</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="ptname" [(ngModel)]="gov.ptname" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="ptsurname">นามสกุล</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="ptsurname" [(ngModel)]="gov.ptsurname" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="price">ค่ารักษารวม</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="totalprice" [(ngModel)]="gov.totalprice" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="datereturn">วันที่ได้รับคืน</label></div>
+                    <div class="ui-grid-col-8"><input type="date" pInputText id="datereturn" [(ngModel)]="gov.datereturn" /></div>
+                </div>
+ <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="datecheque">วันที่ได้Cheque</label></div>
+                    <div class="ui-grid-col-8"><input type="date" pInputText id="datecheque" [(ngModel)]="gov.datecheque" /></div>
+                </div>
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="deleteEvalBill()" label="deleteBill"></button>
+                    <button type="button" pButton icon="fa-check" (click)="saveEvalBill()" label="saveBill"></button>
+                </div>
+            </p-footer>
+        </div>
+       
+<div class="col s6">
+ <p-dataTable [value]="txstemp" sortField="txdate" rowGroupMode="subheader" groupField="txdate" expandableRowGroups="true" [style]="{'margin-top':'50px'}" scrollable="true" scrollHeight="500px">
+                       
+                       <p-header>คนไข้ทันตกรรม</p-header>
+    <ng-template pTemplate="rowgroupheader" let-rowData>{{ setDate(rowData['txdate'])}}</ng-template>
+                        
+                       
+                        <p-column field="hn" header="HN">
+                              <ng-template let-pt="rowData" pTemplate="body">
+                                <button type="button" pButton (click)="setPtname(pt)" icon="fa-space-shuttle fa-rotate-180"></button> {{pt.ptname+' '+pt?.ptsurname}}
+                            </ng-template>
+                        </p-column>
+                        <p-column field="txnamestr" header="การรักษา">
+                        <ng-template let-pt="rowData" pTemplate="body">
+                               {{pt?.txnamestr+' '}}<span *ngIf="pt.txprice>0"> {{pt.txprice}}</span>
+                            </ng-template>
+                            </p-column>
+                    </p-dataTable>
+</div>
+
+    </div>
+
+
+
+</p-dialog>
+<p-dialog [width]="800" header="รายการรายละเอียด" [(visible)]="displayDialogGovDetail" [responsive]="true" showEffect="fade"
+    [modal]="true">
+    <div class="row">
+        <div class="col s6">
+            <div class="ui-grid ui-grid-responsive ui-fluid">
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="doctorid">ทันตแพทย์</label></div>
+                    <div class="ui-grid-col-8">
+                        <p-dropdown autoWidth="true" [style]="{'width':'100%'}" [options]="doctors" [(ngModel)]="gd.doctorid"></p-dropdown>
+                    </div>
+                </div>
+
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="txid">รายการรักษาทันตกรรม</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="txid" [(ngModel)]="gd.txid" />
+                        <div>{{txname}}</div>
+                    </div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="amount">จำนวน</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="amount" [(ngModel)]="gd.amount" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="price">ค่ารักษา</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="price" [(ngModel)]="gd.price" /></div>
+                </div>
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-4"><label for="isspecial">งานSpec</label></div>
+                    <div class="ui-grid-col-8"><input pInputText id="isspecial" [(ngModel)]="gd.isspecial" /></div>
+                </div>
+
+            </div>
+            <p-footer>
+                <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                    <button type="button" pButton icon="fa-close" (click)="cancelDetail()" label="cancelDetail"></button>
+                    <button type="button" pButton icon="fa-check" (click)="saveDetail()" label="saveDetail"></button>
+                </div>
+            </p-footer>
+        </div>
+        <div class="col s6">
+            <div>ตัวเลือกรายการรักษาทันตกรรม</div>
+            <div class="chip" *ngFor="let n of txnamelist;let i=index" (click)="setTxid(n)">
+                {{n.txname}}
+            </div>
+
+
+        </div>
+
+
+    </div>
+</p-dialog>

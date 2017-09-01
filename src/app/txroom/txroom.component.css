@@ -1,0 +1,12 @@
+.margingap{
+    margin: 10px;
+}
+.menublue{
+background-color: #bbdefb;
+}
+.chip{
+   cursor:pointer;cursor:hand; 
+}
+.midnight{
+    background-color: #0277BD;
+}

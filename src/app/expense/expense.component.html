@@ -1,0 +1,64 @@
+<nav class="orange">
+  <ul>
+    <li>
+      <button class="btn btn-small orange" (click)="addNewexpenseBill()">เพิ่มรายการเบิกจ่าย</button>
+    </li>
+
+  </ul>
+</nav>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col s7">
+  
+       
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="expdate">วันที่</label></div>
+          <div class="ui-grid-col-8"><input type="date" pInputText id="expdate" [(ngModel)]="expense.expdate" /></div>
+        </div>
+
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="expname">รายการ</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="expname" [(ngModel)]="expense.expname" /></div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="expcost">ค่าใช้จ่าย</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="expcost" #expcost [(ngModel)]="expense.expcost" /></div>
+        </div>
+        <div class="ui-grid-row">
+          <div class="ui-grid-col-4"><label for="expmonth">รายเดือน</label></div>
+          <div class="ui-grid-col-8"><input pInputText id="expmonth" [(ngModel)]="expense.expmonth" /></div>
+        </div>
+       
+       
+        <div class="ui-dialog-buttonpane ui-helper-clearfix" align="right">
+       <button type="button" pButton icon="fa-check" (click)="getAddNew()" label="บันทึก"></button>
+        </div>
+  <hr>
+  <p-dataTable [value]="expenses"  sortField="expdate" rowGroupMode="subheader" groupField="expdate" >
+    <ng-template pTemplate="rowgroupheader" let-rowData>{{rowData['expdate']}}</ng-template>
+  <p-column field="expdate" header="วันที่"></p-column>
+    
+  
+    <p-column field="expname" header="รายการ"></p-column>
+  <p-column field="expcost" header="ค่าใช้จ่าย"></p-column>
+ 
+  <p-column field="expmonth" header="ประจำเดือน"></p-column>
+  
+
+  <p-column header="แก้ไข">
+    <ng-template let-c="rowData" pTemplate="body">
+      <button class="btn btn-small light-blue lighten-3 " (click)="editExpense(c)"><i class="material-icons">edit</i></button>
+    </ng-template>
+  </p-column>
+ 
+   
+</p-dataTable>
+    </div>
+
+    <div class="col s5">
+
+   </div>
+    </div>
+      </div>
